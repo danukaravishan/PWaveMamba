@@ -1,0 +1,16 @@
+{
+  "title": "PWaveMamba: code, trained models and evaluation outputs",
+  "upload_type": "software",
+  "description": "<p>Code, trained weights, event-disjoint data split and evaluation outputs for the paper \"PWaveMamba: A Multi-Task Selective State-Space Model for Single-Station Earthquake Early Warning From the First Seconds of P-Wave Data\" (submitted to IEEE Transactions on Geoscience and Remote Sensing). PWaveMamba reads one 4 s window of three-component strong-motion acceleration and returns per-sample phase probabilities together with estimates of the peak ground acceleration and the magnitude. The archive contains the PyTorch implementation (including a pure-PyTorch selective-scan fallback for CPU inference), scripts for window extraction, splitting, training, evaluation, the 2011 Christchurch case study and the latency benchmark, 14 trained checkpoints and all outputs behind the tables of the paper. Waveform data are from the New Zealand GeoNet programme and are not included.</p>",
+  "creators": [
+    {"name": "Ravishan, Danuka", "affiliation": "Joint Centre for Disaster Research, Massey University", "orcid": "0009-0008-4828-7051"},
+    {"name": "Prasanna, Raj", "affiliation": "Joint Centre for Disaster Research, Massey University", "orcid": "0000-0002-5608-6558"},
+    {"name": "Herath, Pasan", "affiliation": "Earth Sciences New Zealand", "orcid": "0000-0002-7579-4349"},
+    {"name": "Doyle, Emma E. H.", "affiliation": "Joint Centre for Disaster Research, Massey University", "orcid": "0000-0002-2878-0972"}
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": ["earthquake early warning", "onsite warning", "selective state-space model", "Mamba", "deep learning", "seismology", "New Zealand", "GeoNet"],
+  "version": "1.0.0",
+  "language": "eng"
+}

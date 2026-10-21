@@ -1,0 +1,62 @@
+{
+  "rule": "event-grouped, magnitude-stratified 80/10/10, sha256 order, seed tgrs-2026",
+  "per_split": {
+    "train": {
+      "events": 11501,
+      "records": 71193,
+      "events_by_bin": {
+        "3-4": 9995,
+        "4-5": 1326,
+        "5-6": 168,
+        "6-99": 12
+      },
+      "records_by_bin": {
+        "3-4": 58665,
+        "4-5": 10245,
+        "5-6": 2099,
+        "6-99": 184
+      },
+      "max_magnitude": 7.762542146,
+      "mean_magnitude": 3.483491010992268,
+      "record_fraction": 0.7975108940393641
+    },
+    "validation": {
+      "events": 1438,
+      "records": 8893,
+      "events_by_bin": {
+        "3-4": 1249,
+        "4-5": 166,
+        "5-6": 21,
+        "6-99": 2
+      },
+      "records_by_bin": {
+        "3-4": 7273,
+        "4-5": 1298,
+        "5-6": 283,
+        "6-99": 39
+      },
+      "max_magnitude": 6.026432759,
+      "mean_magnitude": 3.464944150540479,
+      "record_fraction": 0.09962024891059607
+    },
+    "test": {
+      "events": 1438,
+      "records": 9183,
+      "events_by_bin": {
+        "3-4": 1249,
+        "4-5": 166,
+        "5-6": 21,
+        "6-99": 2
+      },
+      "records_by_bin": {
+        "3-4": 7583,
+        "4-5": 1264,
+        "5-6": 287,
+        "6-99": 49
+      },
+      "max_magnitude": 6.656748205,
+      "mean_magnitude": 3.490792129286388,
+      "record_fraction": 0.10286885705003977
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "ckpt": "mag_only_s42.pt",
+  "thresholds_P_S": [
+    0.35,
+    0.35
+  ],
+  "stride_s": 0.1,
+  "threshold_ln": 8.744787086052233,
+  "n_traces": 106,
+  "n_damaging": 32,
+  "n_detected": 0,
+  "all": {
+    "alert_H0": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 30,
+      "TN": 31,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_H0.5": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 30,
+      "TN": 31,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_H1": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 30,
+      "TN": 31,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_longest_run_rule": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 30,
+      "TN": 31,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_Pd2": {
+      "TP": 16,
+      "FP": 0,
+      "FN": 14,
+      "TN": 31,
+      "precision": 1.0,
+      "recall": 0.5333333333333333,
+      "f1": 0.6956521739130435,
+      "f1_ci95": [
+        0.5238095238095238,
+        0.8301886792452831
+      ]
+    },
+    "alert_Pd3": {
+      "TP": 19,
+      "FP": 0,
+      "FN": 11,
+      "TN": 31,
+      "precision": 1.0,
+      "recall": 0.6333333333333333,
+      "f1": 0.7755102040816326,
+      "f1_ci95": [
+        0.625,
+        0.8928571428571429
+      ]
+    },
+    "mcnemar_H1_vs_Pd3": {
+      "model_right_pd_wrong": 0,
+      "model_wrong_pd_right": 19,
+      "p_value_exact": 3.814697265625e-06
+    },
+    "mcnemar_H1_vs_Pd2": {
+      "model_right_pd_wrong": 0,
+      "model_wrong_pd_right": 16,
+      "p_value_exact": 3.0517578125e-05
+    },
+    "n": 61
+  },
+  "detected": {
+    "alert_H0": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_H0.5": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_H1": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_longest_run_rule": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_Pd2": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "alert_Pd3": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 0,
+      "TN": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "f1_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "mcnemar_H1_vs_Pd3": {
+      "model_right_pd_wrong": 0,
+      "model_wrong_pd_right": 0,
+      "p_value_exact": 1.0
+    },
+    "mcnemar_H1_vs_Pd2": {
+      "model_right_pd_wrong": 0,
+      "model_wrong_pd_right": 0,
+      "p_value_exact": 1.0
+    },
+    "n": 0
+  },
+  "early_triggers": 0
+}

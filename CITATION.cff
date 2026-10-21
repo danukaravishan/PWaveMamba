@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this software or the trained models, please cite the paper and this archive."
+title: "PWaveMamba: code and trained models"
+version: 1.0.0
+date-released: 2026-10-21
+license: MIT
+repository-code: "https://github.com/danukaravishan/PWaveMamba"
+keywords:
+  - earthquake early warning
+  - state-space model
+  - Mamba
+  - seismology
+  - deep learning
+authors:
+  - family-names: Ravishan
+    given-names: Danuka
+    orcid: "https://orcid.org/0009-0008-4828-7051"
+    affiliation: "Joint Centre for Disaster Research, Massey University"
+  - family-names: Prasanna
+    given-names: Raj
+    orcid: "https://orcid.org/0000-0002-5608-6558"
+    affiliation: "Joint Centre for Disaster Research, Massey University"
+  - family-names: Herath
+    given-names: Pasan
+    orcid: "https://orcid.org/0000-0002-7579-4349"
+    affiliation: "Earth Sciences New Zealand"
+  - family-names: Doyle
+    given-names: Emma E. H.
+    orcid: "https://orcid.org/0000-0002-2878-0972"
+    affiliation: "Joint Centre for Disaster Research, Massey University"
+preferred-citation:
+  type: article
+  title: "PWaveMamba: A Multi-Task Selective State-Space Model for Single-Station Earthquake Early Warning From the First Seconds of P-Wave Data"
+  journal: "IEEE Transactions on Geoscience and Remote Sensing"
+  status: submitted
+  year: 2026
+  authors:
+    - family-names: Ravishan
+      given-names: Danuka
+    - family-names: Prasanna
+      given-names: Raj
+    - family-names: Herath
+      given-names: Pasan
+    - family-names: Doyle
+      given-names: Emma E. H.

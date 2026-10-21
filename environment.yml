@@ -1,0 +1,19 @@
+name: pwavemamba
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pytorch=2.2.2
+  - pytorch-cuda=12.1
+  - numpy=1.26.4
+  - scipy=1.13.0
+  - pandas=2.2.2
+  - h5py=3.11.0
+  - matplotlib
+  - pip
+  - pip:
+      - obspy==1.4.1
+      - ptflops
+# then:  pip install mamba-ssm==1.2.0.post1 --no-build-isolation

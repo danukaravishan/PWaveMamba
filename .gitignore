@@ -1,0 +1,12 @@
+# data and run outputs are not part of the repository (see docs/DATA.md)
+data/
+outputs/
+results/paper/figures/
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/

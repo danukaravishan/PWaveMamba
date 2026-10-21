@@ -1,0 +1,12 @@
+# Inference and evaluation (CPU is fine). Versions used for the paper.
+torch==2.2.2
+numpy==1.26.4
+scipy==1.13.0
+pandas==2.2.2
+h5py==3.11.0
+# segment extraction (TauP travel times)
+obspy==1.4.1
+# Supplementary figures
+matplotlib
+# Optional: ptflops (MACs of LSTM/Transformer), onnx + onnxruntime (CPU ONNX timing)
+# GPU training and GPU timing (Linux + CUDA):  pip install mamba-ssm==1.2.0.post1 --no-build-isolation

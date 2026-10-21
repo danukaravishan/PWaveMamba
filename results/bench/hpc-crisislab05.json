@@ -1,0 +1,127 @@
+{
+  "host": "hpc-crisislab05",
+  "cpu": "AMD EPYC 9555 64-Core Processor",
+  "env": {
+    "torch": "2.2.2+cu121",
+    "cuda": "12.1",
+    "gpu": "NVIDIA H100 NVL",
+    "mamba_ssm": "1.2.0.post1"
+  },
+  "torch_threads_default": 16,
+  "analytic_macs_base": {
+    "stem": 11558400,
+    "backbone": 64896000,
+    "heads": 1523648,
+    "total": 77978048
+  },
+  "models": {
+    "base": {
+      "params": 238561,
+      "ptflops_macs": null,
+      "gpu_b1": {
+        "median_ms": 1.1640640441328287,
+        "p95_ms": 1.1911951005458832,
+        "runs": 500
+      },
+      "gpu_b64": {
+        "median_ms": 2.4961065500974655,
+        "p95_ms": 2.501700073480606,
+        "runs": 50
+      },
+      "gpu_windows_per_s_b64": 25639.93111492015
+    },
+    "lstm": {
+      "params": 241505,
+      "ptflops_macs": 73295586,
+      "gpu_b1": {
+        "median_ms": 2.0326580852270126,
+        "p95_ms": 2.0426479168236256,
+        "runs": 500
+      },
+      "gpu_b64": {
+        "median_ms": 2.4501720909029245,
+        "p95_ms": 2.472145017236471,
+        "runs": 50
+      },
+      "gpu_windows_per_s_b64": 26120.61423669839,
+      "cpu_torch_t1": {
+        "median_ms": 2.761240815743804,
+        "p95_ms": 2.795733045786619,
+        "runs": 500
+      },
+      "cpu_torch_t4": {
+        "median_ms": 6.333739031106234,
+        "p95_ms": 6.409799214452505,
+        "runs": 500
+      }
+    },
+    "transformer": {
+      "params": 238257,
+      "ptflops_macs": 140783586,
+      "gpu_b1": {
+        "median_ms": 1.1193964164704084,
+        "p95_ms": 1.1423323303461075,
+        "runs": 500
+      },
+      "gpu_b64": {
+        "median_ms": 3.7356531247496605,
+        "p95_ms": 3.7429900839924812,
+        "runs": 50
+      },
+      "gpu_windows_per_s_b64": 17132.211654230843,
+      "cpu_torch_t1": {
+        "median_ms": 16.153280390426517,
+        "p95_ms": 16.368895303457975,
+        "runs": 500
+      },
+      "cpu_torch_t4": {
+        "median_ms": 8.153857197612524,
+        "p95_ms": 8.443913888186216,
+        "runs": 500
+      }
+    },
+    "mamba_l2": {
+      "params": 166281,
+      "ptflops_macs": null,
+      "gpu_b1": {
+        "median_ms": 0.8343067020177841,
+        "p95_ms": 0.8590840734541416,
+        "runs": 500
+      },
+      "gpu_b64": {
+        "median_ms": 1.47376605309546,
+        "p95_ms": 1.4817831106483936,
+        "runs": 50
+      },
+      "gpu_windows_per_s_b64": 43426.1597121036
+    }
+  },
+  "mamba_pure_torchscript": {
+    "file": "mamba_pure_traced.pt",
+    "params": 238561,
+    "cpu_t1": {
+      "median_ms": 22.051938343793154,
+      "p95_ms": 22.233932744711637,
+      "runs": 100
+    },
+    "cpu_t4": {
+      "median_ms": 18.551289569586515,
+      "p95_ms": 18.81432021036744,
+      "runs": 100
+    }
+  },
+  "mamba_onnx": {
+    "file": "mamba_pure.onnx",
+    "ort": "1.23.0",
+    "cpu_t1": {
+      "median_ms": 24.566648062318563,
+      "p95_ms": 25.602199137210846,
+      "runs": 500
+    },
+    "cpu_t4": {
+      "median_ms": 22.384163225069642,
+      "p95_ms": 23.86717824265361,
+      "runs": 500
+    }
+  }
+}
