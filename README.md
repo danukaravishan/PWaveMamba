@@ -1,5 +1,7 @@
 # PWaveMamba
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23522642.svg)](https://doi.org/10.5281/zenodo.23522642)
+
 Code, trained weights, data split and evaluation outputs for
 
 > D. Ravishan, R. Prasanna, P. Herath and E. E. H. Doyle, "PWaveMamba: A Multi-Task Selective State-Space
@@ -140,7 +142,12 @@ this study. See [docs/DATA.md](docs/DATA.md).
 ## Citation
 
 If you use this code or the trained models, please cite the paper (reference will be updated on
-publication) and this archive; see `CITATION.cff`.
+publication) and the archived release:
+
+> D. Ravishan, R. Prasanna, P. Herath and E. E. H. Doyle, "PWaveMamba: code, trained models and evaluation
+> outputs," version 1.0.0, Zenodo, 2026, doi: 10.5281/zenodo.23522642.
+
+See also `CITATION.cff`.
 
 ## License
 
