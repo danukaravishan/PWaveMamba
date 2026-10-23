@@ -104,6 +104,8 @@ def main():
         "--meta", os.path.join(data, "christchurch", "metadata.csv"), "--out", out, "--stride", "0.5",
         "--backend", "reference")
     run("paper/christchurch_rules.py", out)
+    run("scripts/dump_predictions.py", "--ckpt", ck, "--split", "validation", "--backend", "reference", *common)
+    run("scripts/pd_calibration.py", "--data-dir", data, "--split-csv", split, "--out", out)
     print(f"\nSMOKE TEST PASSED (scratch files in {tmp})")
 
 

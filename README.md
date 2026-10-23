@@ -36,12 +36,16 @@ scripts/
   train.py             training recipe of the paper
   evaluate.py          threshold tuning on validation, test metrics, per-window predictions
   christchurch_eval.py 2011 Christchurch streaming case study and the Pd reference rule
+  dump_predictions.py  per-window predictions on any split (validation: alert-level calibration)
+  pd_calibration.py    Pd and RotD50 PGA of every NZ record; Pd threshold for MMI 5 fitted on the training split
   bench_compute.py     parameters, MACs, GPU/CPU latency
 paper/
-  christchurch_rules.py  first-exceedance alert rule, F1 vs. deadline (Fig. 3, Table III)
+  christchurch_rules.py  first-exceedance alert rule, F1 vs. deadline (Table III)
+  christchurch_calibrated.py  thresholds fixed on NZ data for every method: Section VI-E, Fig. 3, SI Table S5
+  fig_paper.py           Figs. 2 and 3 of the paper
   main_tables.py         prints Tables I, III, IV, V from the saved outputs
   si_tables.py           Supplementary tables and figures
-checkpoints/           14 trained models (about 1 MB each), see below
+checkpoints/           18 trained models (about 1 MB each), see below
 splits/                event_split.csv: GeoNet event id -> train / validation / test
 results/               the outputs behind every number in the paper (see results/README.md)
 docs/DATA.md           how to obtain and prepare the data
@@ -96,7 +100,7 @@ first-exceedance rule of the paper (see `paper/christchurch_rules.py`).
 | `mamba_l2_s42.pt` | 2 Mamba layers | Table III |
 | `no_pcond_s42.pt` | without P-conditioned pooling | Table III |
 | `det_only_s42.pt`, `int_only_s42.pt`, `mag_only_s42.pt` | single-task models | Table III |
-| `lstm_s42.pt`, `transformer_s42.pt` | equal-size LSTM and causal Transformer backbones | Tables III, IV |
+| `lstm_s42.pt`, `lstm_s7.pt`, `lstm_s123.pt`, `transformer_s42.pt`, `transformer_s7.pt`, `transformer_s123.pt` | equal-size LSTM and causal Transformer backbones, three seeds each | Tables III, IV; Fig. 3 |
 | `base_s42_ID2.pt`, `_ID10`, `_ID13`, `_ID14` | 2 s before P and 1, 3, 4, 5 s after P | Table V |
 
 Each file is a dict with `model_state_dict`, `variant`, `seed`, `best_epoch` and `epochs_run`.
@@ -107,8 +111,8 @@ Load it with `build_model(variant, window_id)` and `load_checkpoint(...)`; windo
 
 1. Prepare `data/` as described in [docs/DATA.md](docs/DATA.md).
 2. On a GPU machine with `mamba-ssm`: `JOBS=3 bash run_all.sh`. This extracts the windows, checks that the
-   released split is reproduced, trains all 14 models, evaluates them, runs the Christchurch case study and
-   the benchmark, and prints the tables.
+   released split is reproduced, trains all 18 models, evaluates them, runs the Christchurch case study, calibrates
+   the alert levels and the Pd threshold on New Zealand data, runs the benchmark, and prints the tables and figures.
 3. Individual steps:
 
 ```bash
@@ -116,21 +120,35 @@ python scripts/extract_segments.py --window ID6
 python scripts/train.py --variant base --seed 42
 python scripts/evaluate.py --ckpt outputs/models/base_s42.pt
 python scripts/christchurch_eval.py --ckpt outputs/models/base_s42.pt --eval-json outputs/eval/base_s42.json
+python scripts/dump_predictions.py --ckpt outputs/models/base_s42.pt --split validation --out outputs
+python scripts/pd_calibration.py
 python paper/christchurch_rules.py outputs
+python paper/christchurch_calibrated.py outputs
 python paper/main_tables.py outputs
+python paper/fig_paper.py outputs
 ```
 
 Without the data, the tables can be regenerated from the released outputs:
 
 ```bash
 python paper/christchurch_rules.py results
+python paper/christchurch_calibrated.py results
 python paper/main_tables.py results
+python paper/fig_paper.py results          # -> results/paper/figures/
 ```
 
 Training on a GPU is not bit-for-bit deterministic, so a re-run reproduces the released numbers up to the
 seed-to-seed spread reported in the paper.
 
 To check an installation without the data: `python tests/smoke_test.py`.
+
+## Versions
+
+- **1.1.0** (2026-10-22): seeds 7 and 123 of the LSTM and Transformer baselines; validation predictions of every
+  4 s model; Pd computed on all NZ records and its MMI-5 threshold fitted on the training split; comparison of all
+  methods with thresholds fixed on NZ data (`paper/christchurch_calibrated.py`); figure script. Matches the
+  revised manuscript (two-panel Fig. 3, Section VI-E).
+- **1.0.0** (2026-10-21): first release.
 
 ## Data
 
@@ -142,10 +160,10 @@ this study. See [docs/DATA.md](docs/DATA.md).
 ## Citation
 
 If you use this code or the trained models, please cite the paper (reference will be updated on
-publication) and the archived release:
+publication) and the archived release you used (Zenodo; the DOI badge above links to the record):
 
 > D. Ravishan, R. Prasanna, P. Herath and E. E. H. Doyle, "PWaveMamba: code, trained models and evaluation
-> outputs," version 1.0.0, Zenodo, 2026, doi: 10.5281/zenodo.23522642.
+> outputs," Zenodo, 2026, doi: 10.5281/zenodo.23522642 (version 1.0.0).
 
 See also `CITATION.cff`.
 

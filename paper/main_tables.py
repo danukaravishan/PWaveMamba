@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Print the numbers of Tables I, III, IV and V of the paper from the saved outputs (standard library only).
 
-    python3 paper/christchurch_rules.py results      # once, writes results/paper/christchurch_rules.json
+    python3 paper/christchurch_rules.py results        # once, writes results/paper/christchurch_rules.json
+    python3 paper/christchurch_calibrated.py results   # Section VI-E, Fig. 3 (results/paper/christchurch_calibrated.json)
     python3 paper/main_tables.py results
 
 Use `outputs` instead of `results` to tabulate your own re-run.
@@ -57,10 +58,18 @@ line("PWaveMamba (3 seeds)", ev("base_s42")["params"], f"{m(lambda t: t['detecti
      f"{m(lambda t: t['intensity_ln']['r2']):.3f}+-{st.stdev(t['intensity_ln']['r2'] for t in T):.3f}",
      f"{m(lambda t: t['magnitude']['r2']):.3f}", f"{m(lambda t: t['magnitude']['mae']):.3f}",
      f"{st.mean(f1(s, '2') for s in SEEDS):.2f}", f"{st.mean(f1(s, '3') for s in SEEDS):.2f}")
+def fam_row(name, tags):
+    T = [ev(t)["test"] for t in tags]
+    m = lambda f: st.mean(f(t) for t in T)
+    line(name + " (3 seeds)", ev(tags[0])["params"], f"{m(lambda t: t['detection_all']['accuracy']):.3f}",
+         f"{m(lambda t: t['intensity_ln']['r2']):.3f}+-{st.stdev(t['intensity_ln']['r2'] for t in T):.3f}",
+         f"{m(lambda t: t['magnitude']['r2']):.3f}", f"{m(lambda t: t['magnitude']['mae']):.3f}",
+         f"{st.mean(f1(s, '2') for s in tags):.2f}", f"{st.mean(f1(s, '3') for s in tags):.2f}")
+
+
 for tag, name in (("mamba_l2_s42", "2 Mamba layers"), ("no_pcond_s42", "w/o P-cond. pooling"),
                   ("det_only_s42", "detection only"), ("int_only_s42", "intensity only"),
-                  ("mag_only_s42", "magnitude only"), ("lstm_s42", "LSTM backbone"),
-                  ("transformer_s42", "Causal Transformer")):
+                  ("mag_only_s42", "magnitude only")):
     e = ev(tag)
     t = e["test"]
     acc = f"{t['detection_all']['accuracy']:.3f}" if tag not in ("int_only_s42", "mag_only_s42") else "--"
@@ -70,6 +79,8 @@ for tag, name in (("mamba_l2_s42", "2 Mamba layers"), ("no_pcond_s42", "w/o P-co
     single = tag in ("det_only_s42", "int_only_s42", "mag_only_s42")
     line(name, e["params"], acc, ir2, mr2, mmae, "--" if single else f"{f1(tag, '2'):.2f}",
          "--" if single else f"{f1(tag, '3'):.2f}")
+fam_row("LSTM backbone", ["lstm_s42", "lstm_s7", "lstm_s123"])
+fam_row("Causal Transformer", ["transformer_s42", "transformer_s7", "transformer_s123"])
 
 # ---------------- Table IV: compute
 for p in sorted(glob.glob(os.path.join(R, "bench", "*.json"))):

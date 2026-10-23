@@ -22,6 +22,7 @@ python scripts/make_split.py --out-dir "$OUT/splits" > /dev/null && \
 # 3. training (main model first)
 RUNS=("base 42 ID6" "no_pcond 42 ID6" "lstm 42 ID6" "transformer 42 ID6" "det_only 42 ID6" "int_only 42 ID6"
       "mag_only 42 ID6" "base 7 ID6" "base 123 ID6" "mamba_l2 42 ID6"
+      "lstm 7 ID6" "lstm 123 ID6" "transformer 7 ID6" "transformer 123 ID6"
       "base 42 ID2" "base 42 ID10" "base 42 ID13" "base 42 ID14")
 tagof() { [[ $3 == ID6 ]] && echo "${1}_s${2}" || echo "${1}_s${2}_${3}"; }
 train_one() { set -- $1; t=$(tagof "$@"); [[ -f outputs/models/$t.pt ]] && return 0
@@ -36,15 +37,25 @@ for r in "${RUNS[@]}"; do set -- $r; t=$(tagof "$@")
   [[ -f $OUT/models/$t.pt && ! -f $OUT/eval/$t.json ]] && { log "eval $t"; python scripts/evaluate.py --ckpt "$OUT/models/$t.pt"; }
 done
 
+# 4b. validation predictions of the 4 s models (alert levels fixed on NZ validation data)
+for r in "${RUNS[@]:0:14}"; do set -- $r; t=$(tagof "$@")
+  [[ -f $OUT/eval/$t.json && ! -f $OUT/eval/${t}_validation_predictions.csv.gz ]] && \
+    python scripts/dump_predictions.py --ckpt "$OUT/models/$t.pt" --split validation --out "$OUT"
+done
+
 # 5. Christchurch case study (4 s models)
 if [[ -f data/christchurch/christchurch.hdf5 ]]; then
-  for r in "${RUNS[@]:0:10}"; do set -- $r; t=$(tagof "$@")
+  for r in "${RUNS[@]:0:14}"; do set -- $r; t=$(tagof "$@")
     [[ -f $OUT/christchurch/${t}_summary.json ]] || python scripts/christchurch_eval.py --ckpt "$OUT/models/$t.pt" --eval-json "$OUT/eval/$t.json"
   done
   python paper/christchurch_rules.py "$OUT"
+  # 5b. Pd on all NZ records, threshold fitted on the training split (CPU, about an hour)
+  [[ -f $OUT/pd/pd_calibration.json ]] || python scripts/pd_calibration.py --out "$OUT"
+  python paper/christchurch_calibrated.py "$OUT"
 else log "data/christchurch/christchurch.hdf5 not found: skipping the case study"; fi
 
 # 6. complexity and latency
 log "benchmark"; python scripts/bench_compute.py || log "benchmark FAILED"
 python paper/main_tables.py "$OUT" || true
+python paper/fig_paper.py "$OUT" || true
 log "ALL DONE"

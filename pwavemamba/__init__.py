@@ -6,4 +6,4 @@ from .preprocessing import segment_preprocess_data
 from .decision import predict, topk_conf, classify
 from .utils import load_checkpoint, set_seed
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"

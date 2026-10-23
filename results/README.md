@@ -13,9 +13,12 @@ thresholds was removed from the `eval/*.json` files, and the per-window CSV file
 | `train/<model>.json` | training and validation loss per epoch, best epoch, run time, software versions | SI |
 | `christchurch/<model>_windows.csv.gz` | every 4 s window (0.1 s hop) of the 2011 Christchurch records: class, P/S confidence, intensity, magnitude | Section VII |
 | `christchurch/<model>_stations.csv`, `_summary.json` | per-record arrivals, reference PGA, Pd, hold-rule alerts | Section VII |
+| `eval/<model>_validation_predictions.csv.gz` | validation windows of every 4 s model; used to fix each network's alert level | Section VI-E, Fig. 3b, SI Table S5 |
+| `pd/pd_records.csv.gz` | Pd over 1-3 s and RotD50 PGA of every NZ record with a pick (train/validation/test) | Section VI-E |
+| `pd/pd_calibration.json`, `pd/christchurch_pd.csv` | Pd thresholds fitted on the training split; scores on validation/test and Christchurch | Section VI-E, Fig. 3, SI Table S5 |
 | `bench/*.json` | parameters, MACs, GPU and CPU latency | Table IV |
 | `optuna/*.db` | Optuna studies of the hyperparameter search (SQLite) | Table II; SI |
-| `paper/` | `christchurch_rules.json`, `christchurch_tradeoff.csv`: first-exceedance rule (from `paper/christchurch_rules.py`) | Fig. 3; Table III |
+| `paper/` | `christchurch_rules.json`, `christchurch_tradeoff.csv` (from `paper/christchurch_rules.py`); `christchurch_calibrated.json` (from `paper/christchurch_calibrated.py`) | Table III; Section VI-E; Fig. 3 |
 
 Model names: `<variant>_s<seed>[_<window id>]`, see the main README.
 Intensity values are ln(PGA [cm/s^2]) + 5.

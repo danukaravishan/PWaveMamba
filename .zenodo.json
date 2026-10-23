@@ -11,6 +11,6 @@
   "license": "MIT",
   "access_right": "open",
   "keywords": ["earthquake early warning", "onsite warning", "selective state-space model", "Mamba", "deep learning", "seismology", "New Zealand", "GeoNet"],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "language": "eng"
 }
