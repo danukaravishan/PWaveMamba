@@ -1,6 +1,6 @@
 # PWaveMamba
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23522642.svg)](https://doi.org/10.5281/zenodo.23522642)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23592491.svg)](https://doi.org/10.5281/zenodo.23592491)
 
 Code, trained weights, data split and evaluation outputs for
 
@@ -163,7 +163,8 @@ If you use this code or the trained models, please cite the paper (reference wil
 publication) and the archived release you used (Zenodo; the DOI badge above links to the record):
 
 > D. Ravishan, R. Prasanna, P. Herath and E. E. H. Doyle, "PWaveMamba: code, trained models and evaluation
-> outputs," Zenodo, 2026, doi: 10.5281/zenodo.23522642 (version 1.0.0).
+> outputs," version 1.1.0, Zenodo, 2026, doi: 10.5281/zenodo.23592491.
+> (Version 1.0.0: doi: 10.5281/zenodo.23522642.)
 
 See also `CITATION.cff`.
 
